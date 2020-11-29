@@ -10,7 +10,11 @@ import java.io.IOException;
 
 public class ConfigManager {
 
-    private Main plugin = Main.getPlugin(Main.class);
+    private final Main plugin;
+
+    public ConfigManager(Main plugin) {
+        this.plugin = plugin;
+    }
 
     public FileConfiguration playercfg;
     public File playerdata;

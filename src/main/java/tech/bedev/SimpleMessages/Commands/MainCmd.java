@@ -78,6 +78,8 @@ public class MainCmd implements CommandExecutor , Listener {
                     if (sender instanceof Player) {
                         if (args.length == 2) {
                             plugin.getPlayerData().set("Users." + player.getUniqueId() + ".UpdateChecker", true);
+                            plugin.savePlayerData();
+                            plugin.reloadPlayerData();
                             sender.sendMessage(ChatColor.GREEN + "Enabled update messages for self");
                             return true;
                         }
@@ -86,6 +88,8 @@ public class MainCmd implements CommandExecutor , Listener {
                     if (sender instanceof Player) {
                         if (args.length == 2) {
                             plugin.getPlayerData().set("Users." + player.getUniqueId() + ".UpdateChecker", false);
+                            plugin.savePlayerData();
+                            plugin.reloadPlayerData();
                             sender.sendMessage(ChatColor.RED + "Disabled update messages for self");
                             return true;
                         }

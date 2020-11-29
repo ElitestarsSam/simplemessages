@@ -16,7 +16,7 @@ public class MainCmdTab implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if (arg0.isEmpty()) {
             if (sender.hasPermission("sm.update")) {
-                arg0.add("update");
+                arg0.add("updatechecker");
             }
             if (sender.hasPermission("sm.reload")) {
                 arg0.add("reload");
