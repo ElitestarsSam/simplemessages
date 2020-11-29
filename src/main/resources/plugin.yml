@@ -1,0 +1,19 @@
+name: SimpleMessages
+authors:
+  - ElitestarsSam
+version: 1.0-SNAPSHOT
+main: tech.bedev.SimpleMessages.Main
+description: Customise loads of messages!
+api-version: 1.13
+commands:
+  sm:
+    description: Main command
+    aliases:
+      - simplemessages
+permissions:
+  sm.update:
+    default: op
+  sm.reload:
+    default: op
+  sm.help:
+    default: op
