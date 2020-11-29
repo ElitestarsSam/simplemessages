@@ -24,7 +24,7 @@ public class ConfigManager {
             plugin.getDataFolder().mkdir();
         }
 
-        playerdata = new File(plugin.getDataFolder(), "playerdata.db");
+        playerdata = new File(plugin.getDataFolder(), "database.db");
 
         if (!playerdata.exists()) {
             try {

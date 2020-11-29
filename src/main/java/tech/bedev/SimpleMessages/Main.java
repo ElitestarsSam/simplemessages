@@ -28,6 +28,8 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     public void loadConfig() {
+        this.getConfig().options().copyDefaults(true);
+        this.saveDefaultConfig();
         this.getPlayerData().options().copyDefaults(true);
         this.savePlayerData();
     }
@@ -62,7 +64,7 @@ public class Main extends JavaPlugin implements Listener {
     @EventHandler
     public void updateMessage(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (this.getConfig().getBoolean("UpdateChecker")) {
+        if (this.getPlayerData().getBoolean("Users." + player.getUniqueId() + ".UpdateChecker")) {
             if (player.hasPermission("sm.update")) {
                 new UpdateChecker(this, 83376).getVersion(version -> {
                     if (!this.getDescription().getVersion().equalsIgnoreCase(version)) {
