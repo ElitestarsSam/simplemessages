@@ -2,6 +2,7 @@ package tech.bedev.SimpleMessages.Commands.CustomisableCommands;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +22,10 @@ public class TwitchCmd implements Listener, CommandExecutor {
                     if (!sender.hasPermission("sm.twitch")) {
                         sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
                     } else {
-                        String cmdText = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Twitch.Message"));
+                        String cmdText = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Twitch.Message")
+                                .replaceAll("%playercount%", String.valueOf(Bukkit.getOfflinePlayers().length))
+                                .replaceAll("%player%", sender.getName())
+                                .replaceAll("%version%", plugin.getDescription().getVersion()));
                         cmdText = PlaceholderAPI.setPlaceholders((Player) sender, cmdText);
                         sender.sendMessage(cmdText);
                     }

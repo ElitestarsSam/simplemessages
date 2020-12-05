@@ -1,6 +1,7 @@
 package tech.bedev.SimpleMessages.Commands;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -101,7 +102,10 @@ public class MainCmd implements CommandExecutor, Listener {
                 if (args.length == 1) {
                     if (player.hasPermission("sm.motd")) {
                         for (int i = 0; i < plugin.getConfig().getList("Motd.Message").size(); i++) {
-                            player.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getList("Motd.Message").get(i).toString()));
+                            player.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getList("Motd.Message").get(i).toString())
+                                    .replaceAll("%playercount%", String.valueOf(Bukkit.getOfflinePlayers().length))
+                                    .replaceAll("%player%", player.getName())
+                                    .replaceAll("%version%", plugin.getDescription().getVersion()));
                         }
                     }
                 } else if (args[1].equalsIgnoreCase("enable")) {
