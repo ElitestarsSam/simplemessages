@@ -1,5 +1,6 @@
 package tech.bedev.SimpleMessages;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -11,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.bedev.SimpleMessages.Commands.MainCmd;
 import tech.bedev.SimpleMessages.Commands.TabCompleters.MainCmdTab;
 import tech.bedev.SimpleMessages.Config.ConfigManager;
+import tech.bedev.SimpleMessages.Events.PlayerDeathEvent;
 
 import java.io.IOException;
 
@@ -25,13 +27,17 @@ public class Main extends JavaPlugin implements Listener {
         this.loadConfig();
         this.loadCommands();
         this.loadEvents();
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            getLogger().warning("Could not find PlaceholderAPI! This plugin is required for SimpleMessages to work!");
+            Bukkit.shutdown();
+        }
     }
 
     public void loadConfig() {
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
-        this.getPlayerData().options().copyDefaults(true);
-        this.savePlayerData();
+        this.getData().options().copyDefaults(true);
+        this.saveData();
     }
 
     public void loadCommands() {
@@ -41,13 +47,16 @@ public class Main extends JavaPlugin implements Listener {
 
     public void loadEvents() {
         this.getServer().getPluginManager().registerEvents(this, this);
+        this.getServer().getPluginManager().registerEvents(new tech.bedev.SimpleMessages.Events.PlayerJoinEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new tech.bedev.SimpleMessages.Events.PlayerQuitEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new tech.bedev.SimpleMessages.Events.PlayerDeathEvent(), this);
     }
 
-    public FileConfiguration getPlayerData() {
+    public FileConfiguration getData() {
         return cfgm.playercfg;
     }
 
-    public void savePlayerData() {
+    public void saveData() {
         try {
             cfgm.playercfg.save(cfgm.playerdata);
         } catch (IOException e) {
@@ -55,24 +64,7 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
-    public void reloadPlayerData() {
+    public void reloadData() {
         cfgm.playercfg = YamlConfiguration.loadConfiguration(cfgm.playerdata);
-    }
-
-
-
-    @EventHandler
-    public void updateMessage(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        if (this.getPlayerData().getBoolean("Users." + player.getUniqueId() + ".UpdateChecker")) {
-            if (player.hasPermission("sm.update")) {
-                new UpdateChecker(this, 83376).getVersion(version -> {
-                    if (!this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                        player.sendMessage(ChatColor.YELLOW + "A new version of " + ChatColor.AQUA + "" + ChatColor.BOLD + "SimpleMessages " + ChatColor.GRAY + "(" + ChatColor.WHITE + version + ChatColor.GRAY + ")" + ChatColor.YELLOW + " is available.");
-                        player.sendMessage(ChatColor.YELLOW + "Download the new version at " + ChatColor.GRAY + "https://www.be-development.tech/simplemessages");
-                    }
-                });
-            }
-        }
     }
 }

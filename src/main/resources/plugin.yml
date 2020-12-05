@@ -4,6 +4,8 @@ authors:
 version: 1.0-SNAPSHOT
 main: tech.bedev.SimpleMessages.Main
 description: Customise loads of messages!
+depend:
+  - PlaceholderAPI
 api-version: 1.13
 commands:
   sm:
@@ -11,9 +13,46 @@ commands:
     aliases:
       - simplemessages
 permissions:
+  sm.commands.*:
+    description: Allows use of all SimpleMessages commands
+    children:
+      sm.website: true
+      sm.store: true
+      sm.discord: true
+      sm.apply: true
+      sm.teamspeak: true
+      sm.twitter: true
+      sm.twitch: true
+      sm.youtube: true
   sm.update:
     default: op
   sm.reload:
     default: op
   sm.help:
     default: op
+  sm.motd:
+    default: true
+  sm.website:
+    description: Allows use of /website
+    default: true
+  sm.store:
+    description: Allows use of /store
+    default: true
+  sm.discord:
+    description: Allows use of /discord
+    default: true
+  sm.apply:
+    description: Allows use of /apply
+    default: true
+  sm.teamspeak:
+    description: Allows use of /teamspeak
+    default: true
+  sm.twitter:
+    description: Allows use of /twitter
+    default: true
+  sm.twitch:
+    description: Allows use of /twitch
+    default: true
+  sm.youtube:
+    description: Allows use of /youtube
+    default: true

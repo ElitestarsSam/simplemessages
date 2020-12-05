@@ -1,17 +1,31 @@
-########################################################
-#                                                      #
-#                                                      #
-#  SimpleMessages made by ElitestarsSam and Blue_Tree  #
-#                                                      #
-#                                                      #
-########################################################
+# ====================================================== #
+#                                                        #
+#                                                        #
+#          SimpleMessages made by BE Development         #
+#                                                        #
+#                                                        #
+# ====================================================== #
 
-#====================================#
+# ==================================== #
 
-#PlaceholderAPI compatible
-#To use PlaceholderAPI placeholders, you must import them into PAPI through ecloud or extensions.
+# PlaceholderAPI compatible
+# To use PlaceholderAPI placeholders, you must import them into PAPI through ecloud or extensions.
 
-#====================================#
+# ==================================== #
+
+# Internal Placeholders:
+
+# Death Messages:
+# %death_player% - Who died
+# %death_killer% - Who killed the person
+# %death_item% - What item was used to kill
+
+# All Messages:
+# %version% - The current plugin version
+# %player% - The player the message is sending to or who joined/left
+# %playercount% - The amount of unique players that have joined
+
+# ==================================== #
 
 Main:
   Header: "&b&lSimpleMessages &ev%version%"
@@ -21,121 +35,119 @@ Help:
   Header: "&b&lSimpleMessages &eHelp Menu"
   Footer: "&b&lSimpleMessages &eHelp Menu"
 
-#====================================#
+# ==================================== #
 
-#Placeholders:
-#%version% - The current plugin version
-#Death Messages:
-#%death_player% - Who died
-#%death_killer% - Who killed the person
-#%death_item% - What item was used to kill
-#Join/Leave Messages:
-#%player% - The player that joined/left
-#%playercount% - The amount of unique players that have joined
+Motd:
+  Enabled: true
+# Enables/disables the motd
 
-#====================================#
+  Message:
+    - "&bWelcome back &e%player%"
+    - "&b&lSimpleMessages &eby https://www.be-development.tech"
+
+# ==================================== #
 
 DeathMessage:
   Enabled: true
-  #Enables/disables death messages
+# Enables/disables death messages
 
   OnlyPlayer: true
-  #Enabling 'OnlyPlayer' will only send messages for if the player is killed by someone else and not natural eg: fall damage, drowning
+# Enabling 'OnlyPlayer' will only send messages for if the player is killed by someone else and not natural eg: fall damage, drowning
 
   Message: "&6%death_player% &fwas killed by &6%death_killer%"
 
-#====================================#
+# ==================================== #
 
-#FirstJoinmessage: the message sent to players when someone joins the game
+# FirstJoinmessage: the message sent to players when someone joins the game
 
 FirstJoinMessage:
   Enabled: true
-  #Enables/disables first join messages
+# Enables/disables first join messages
 
   Message: "&f%player% &ajoined the game for the first time! &8[&e#%playercount%&8]"
 
-#====================================#
+# ==================================== #
 
-#Joinmessage: the message sent to players when someone joins the game
+# Joinmessage: the message sent to players when someone joins the game
 
 JoinMessage:
   Enabled: true
-  #Enables/disables join messages
+# Enables/disables join messages
 
   Message: "&f%player% &ajoined the game"
 
-#====================================#
+# ==================================== #
 
-#LeaveMessage: the message sent to players when someone leaves the game
+# LeaveMessage: the message sent to players when someone leaves the game
 
 LeaveMessage:
   Enabled: true
-  #Enables/disables leave messages
+# Enables/disables leave messages
 
   Message: "&f%player% &cleft the game"
 
-#====================================#
+# ==================================== #
 
 Website:
   Enabled: true
-  #Enables/disables /website
+# Enables/disables /website
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 Store:
   Enabled: true
-  #Enables/disables /store
+# Enables/disables /store
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 Discord:
   Enabled: true
-  #Enables/disables /discord
+# Enables/disables /discord
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 Apply:
   Enabled: true
-  #Enables/disables /apply
+# Enables/disables /apply
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 TeamSpeak:
   Enabled: true
-  #Enables/disables /teamspeak
+# Enables/disables /teamspeak
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 Twitter:
   Enabled: true
-  #Enables/disables /twitter
+# Enables/disables /twitter
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 Twitch:
   Enabled: true
-  #Enables/disables /twitch
+# Enables/disables /twitch
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #
 
 YouTube:
   Enabled: true
-  #Enables/disables /youtube
+# Enables/disables /youtube
 
   Message: "&aChange this in &econfig.yml"
 
-#====================================#
+# ==================================== #

@@ -10,7 +10,7 @@ import tech.bedev.SimpleMessages.Main;
 import tech.bedev.SimpleMessages.UpdateChecker;
 
 
-public class MainCmd implements CommandExecutor , Listener {
+public class MainCmd implements CommandExecutor, Listener {
 
     Main plugin = Main.getPlugin(Main.class);
 
@@ -22,7 +22,7 @@ public class MainCmd implements CommandExecutor , Listener {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Main.Header")).replaceAll("%version%", plugin.getDescription().getVersion()));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', " &9> &bAuthors&8: &f" + plugin.getDescription().getAuthors()));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', " &9> &bDescription&8: &f" + plugin.getDescription().getDescription()));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', " &9> &bDiscord&8: &fhttps://discord.gg/jRPUXt8"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', " &9> &bDiscord&8: &fhttps://www.be-development.tech/discord"));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eFor commands please do &b/sm help"));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Main.Footer")).replaceAll("%version%", plugin.getDescription().getVersion()));
                 return true;
@@ -57,6 +57,8 @@ public class MainCmd implements CommandExecutor , Listener {
                         return true;
                     }
                 }
+            } else if (args[0].equalsIgnoreCase("command")) {
+
             } else if (args[0].equalsIgnoreCase("updatechecker")) {
                 if (args.length == 1) {
                     if (!sender.hasPermission("sm.update")) {
@@ -77,9 +79,9 @@ public class MainCmd implements CommandExecutor , Listener {
                 } else if (args[1].equalsIgnoreCase("enable")) {
                     if (sender instanceof Player) {
                         if (args.length == 2) {
-                            plugin.getPlayerData().set("Users." + player.getUniqueId() + ".UpdateChecker", true);
-                            plugin.savePlayerData();
-                            plugin.reloadPlayerData();
+                            plugin.getData().set("Users." + player.getUniqueId() + ".UpdateChecker", true);
+                            plugin.saveData();
+                            plugin.reloadData();
                             sender.sendMessage(ChatColor.GREEN + "Enabled update messages for self");
                             return true;
                         }
@@ -87,10 +89,38 @@ public class MainCmd implements CommandExecutor , Listener {
                 } else if (args[1].equalsIgnoreCase("disable")) {
                     if (sender instanceof Player) {
                         if (args.length == 2) {
-                            plugin.getPlayerData().set("Users." + player.getUniqueId() + ".UpdateChecker", false);
-                            plugin.savePlayerData();
-                            plugin.reloadPlayerData();
+                            plugin.getData().set("Users." + player.getUniqueId() + ".UpdateChecker", false);
+                            plugin.saveData();
+                            plugin.reloadData();
                             sender.sendMessage(ChatColor.RED + "Disabled update messages for self");
+                            return true;
+                        }
+                    }
+                }
+            } else if (args[0].equalsIgnoreCase("motd")) {
+                if (args.length == 1) {
+                    if (player.hasPermission("sm.motd")) {
+                        for (int i = 0; i < plugin.getConfig().getList("Motd.Message").size(); i++) {
+                            player.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getList("Motd.Message").get(i).toString()));
+                        }
+                    }
+                } else if (args[1].equalsIgnoreCase("enable")) {
+                    if (sender instanceof Player) {
+                        if (args.length == 2) {
+                            plugin.getData().set("Users." + player.getUniqueId() + ".Motd", true);
+                            plugin.saveData();
+                            plugin.reloadData();
+                            sender.sendMessage(ChatColor.GREEN + "Enabled motd for self");
+                            return true;
+                        }
+                    }
+                } else if (args[1].equalsIgnoreCase("disable")) {
+                    if (sender instanceof Player) {
+                        if (args.length == 2) {
+                            plugin.getData().set("Users." + player.getUniqueId() + ".Motd", false);
+                            plugin.saveData();
+                            plugin.reloadData();
+                            sender.sendMessage(ChatColor.RED + "Disabled motd for self");
                             return true;
                         }
                     }
