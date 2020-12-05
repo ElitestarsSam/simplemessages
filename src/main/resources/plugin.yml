@@ -12,6 +12,28 @@ commands:
     description: Main command
     aliases:
       - simplemessages
+  website:
+    description: Website command
+  store:
+    description: Store command
+  discord:
+    description: Discord command
+  apply:
+    description: Apply command
+  teamspeak:
+    description: TeamSpeak command
+    aliases:
+      - ts
+      - ts3
+      - teamspeak3
+  twitter:
+    description: Twitter command
+  twitch:
+    description: Twitch command
+  youtube:
+    description: YouTube command
+  tellraw:
+    description: Better /tellraw command
 permissions:
   sm.commands.*:
     description: Allows use of all SimpleMessages commands

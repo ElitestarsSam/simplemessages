@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import tech.bedev.SimpleMessages.Commands.CustomisableCommands.*;
 import tech.bedev.SimpleMessages.Commands.MainCmd;
 import tech.bedev.SimpleMessages.Commands.TabCompleters.MainCmdTab;
 import tech.bedev.SimpleMessages.Config.ConfigManager;
@@ -43,6 +44,14 @@ public class Main extends JavaPlugin implements Listener {
     public void loadCommands() {
         this.getCommand("sm").setExecutor(new MainCmd());
         this.getCommand("sm").setTabCompleter(new MainCmdTab());
+        this.getCommand("apply").setExecutor(new ApplyCmd());
+        this.getCommand("discord").setExecutor(new DiscordCmd());
+        this.getCommand("store").setExecutor(new StoreCmd());
+        this.getCommand("teamspeak").setExecutor(new TeamSpeakCmd());
+        this.getCommand("twitter").setExecutor(new TwitterCmd());
+        this.getCommand("twitch").setExecutor(new TwitchCmd());
+        this.getCommand("website").setExecutor(new WebsiteCmd());
+        this.getCommand("youtube").setExecutor(new YouTubeCmd());
     }
 
     public void loadEvents() {
