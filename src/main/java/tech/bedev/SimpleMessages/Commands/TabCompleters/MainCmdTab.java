@@ -11,7 +11,7 @@ public class MainCmdTab implements TabCompleter {
 
     List<String> arg0 = new ArrayList<String>();
     List<String> updatearg = new ArrayList<>();
-    List<String> commandsarg = new ArrayList<>();
+    //List<String> commandsarg = new ArrayList<>();
     List<String> motdarg = new ArrayList<>();
 
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
@@ -25,9 +25,11 @@ public class MainCmdTab implements TabCompleter {
             if (sender.hasPermission("sm.help")) {
                 arg0.add("help");
             }
+            /*
             if (sender.hasPermission("sm.website") || sender.hasPermission("sm.store") || sender.hasPermission("sm.discord") || sender.hasPermission("sm.apply") || sender.hasPermission("sm.teamspeak") || sender.hasPermission("sm.twitter") || sender.hasPermission("sm.youtube") || sender.hasPermission("sm.twitch")) {
                 arg0.add("command");
             }
+            */
             if (sender.hasPermission("sm.motd")) {
                 arg0.add("motd");
             }
@@ -40,6 +42,7 @@ public class MainCmdTab implements TabCompleter {
 				updatearg.add("enable");
 				updatearg.add("disable");
 			}
+			/*
 			if (commandsarg.isEmpty()) {
 			    commandsarg.add("website");
                 commandsarg.add("store");
@@ -50,6 +53,7 @@ public class MainCmdTab implements TabCompleter {
                 commandsarg.add("youtube");
                 commandsarg.add("twitch");
             }
+			*/
 
         List<String> result = new ArrayList<String>();
         if (args.length == 1) {
@@ -77,6 +81,7 @@ public class MainCmdTab implements TabCompleter {
                 return result;
             }
         }
+        /*
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("command")) {
                 for (String a : commandsarg) {
@@ -86,6 +91,7 @@ public class MainCmdTab implements TabCompleter {
                 return result;
             }
         }
+        */
         return null;
     }
 }

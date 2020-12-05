@@ -54,7 +54,7 @@ DeathMessage:
   OnlyPlayer: true
 # Enabling 'OnlyPlayer' will only send messages for if the player is killed by someone else and not natural eg: fall damage, drowning
 
-  Message: "&6%death_player% &fwas killed by &6%death_killer%"
+  Message: "&6%death_player% &fwas killed by &6%death_killer% &fwith their &6%death_item%"
 
 # ==================================== #
 
