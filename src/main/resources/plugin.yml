@@ -1,13 +1,16 @@
 name: SimpleMessages
 authors:
   - ElitestarsSam
-version: 1.0-SNAPSHOT
+version: 1.0.0
 main: tech.bedev.SimpleMessages.Main
 description: Customise loads of messages!
 depend:
   - PlaceholderAPI
 api-version: 1.13
+website: https://bedev.tech
 commands:
+  motd:
+    description: Motd command
   sm:
     description: Main command
     aliases:
@@ -34,6 +37,24 @@ commands:
     description: YouTube command
   tellraw:
     description: Better /tellraw command
+  toggledeathmessages:
+    description: Toggle death messages
+    aliases:
+      - deathmessages
+      - dm
+      - tdm
+  msg:
+    description: Message command
+    aliases:
+      - tell
+      - w
+      - t
+      - whisper
+      - message
+  reply:
+    description: Reply command
+    aliases:
+      - r
 permissions:
   sm.commands.*:
     description: Allows use of all SimpleMessages commands
@@ -46,6 +67,15 @@ permissions:
       sm.twitter: true
       sm.twitch: true
       sm.youtube: true
+  sm.*:
+    description: All permissions
+    children:
+      sm.commands.*: true
+      sm.update: true
+      sm.reload: true
+      sm.help: true
+      sm.motd: true
+      sm.toggledeathmessages: true
   sm.update:
     default: op
   sm.reload:
@@ -77,4 +107,10 @@ permissions:
     default: true
   sm.youtube:
     description: Allows use of /youtube
+    default: true
+  sm.toggledeathmessages:
+    description: Ablility to toggle death messages
+    default: true
+  sm.msg:
+    description: Allows use of /msg and /r
     default: true

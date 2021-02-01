@@ -18,6 +18,14 @@ public class PlayerJoinEvent implements Listener {
         Player player = event.getPlayer();
         boolean hasPlayed = player.hasPlayedBefore();
         if (!hasPlayed) {
+            plugin.getData().set("Users." + player.getUniqueId() + ".Motd", true);
+            plugin.saveData();
+            plugin.reloadData();
+            if (player.hasPermission("sm.update")) {
+                plugin.getData().set("Users." + player.getUniqueId() + ".UpdateChecker", true);
+                plugin.saveData();
+                plugin.reloadData();
+            }
             if (plugin.getConfig().getBoolean("FirstJoinMessage.Enabled")) {
                 String firstjoinText = ChatColor.translateAlternateColorCodes('&',
                         plugin.getConfig().getString("FirstJoinMessage.Message")
@@ -71,7 +79,7 @@ public class PlayerJoinEvent implements Listener {
                 new UpdateChecker(plugin, 83376).getVersion(version -> {
                     if (!plugin.getDescription().getVersion().equalsIgnoreCase(version)) {
                         player.sendMessage(ChatColor.YELLOW + "A new version of " + ChatColor.AQUA + "" + ChatColor.BOLD + "SimpleMessages " + ChatColor.GRAY + "(" + ChatColor.WHITE + version + ChatColor.GRAY + ")" + ChatColor.YELLOW + " is available.");
-                        player.sendMessage(ChatColor.YELLOW + "Download the new version at " + ChatColor.GRAY + "https://www.be-development.tech/simplemessages");
+                        player.sendMessage(ChatColor.YELLOW + "Download the new version at " + ChatColor.GRAY + "https://bedev.tech/simplemessages");
                     }
                 });
             }

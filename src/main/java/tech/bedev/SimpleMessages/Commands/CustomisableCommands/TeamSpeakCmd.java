@@ -20,7 +20,7 @@ public class TeamSpeakCmd implements Listener, CommandExecutor {
             if (cmd.getName().equalsIgnoreCase("teamspeak")) {
                 if (plugin.getConfig().getBoolean("TeamSpeak.Enabled")) {
                     if (!sender.hasPermission("sm.teamspeak")) {
-                        sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+                        sender.sendMessage(plugin.msg(plugin.getLang().getString("Errors.NoPermission")));
                     } else {
                         String cmdText = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("TeamSpeak.Message")
                                 .replaceAll("%playercount%", String.valueOf(Bukkit.getOfflinePlayers().length))
@@ -32,7 +32,7 @@ public class TeamSpeakCmd implements Listener, CommandExecutor {
                 }
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "You must be a player to execute this command!");
+            sender.sendMessage(plugin.msg(plugin.getLang().getString("Errors.MustBePlayer")));
         }
         return true;
     }

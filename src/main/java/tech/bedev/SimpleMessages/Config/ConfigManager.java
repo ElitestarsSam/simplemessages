@@ -18,6 +18,8 @@ public class ConfigManager {
 
     public FileConfiguration playercfg;
     public File playerdata;
+    public FileConfiguration langcfg;
+    public File langfile;
 
     public void setup() {
         if (!plugin.getDataFolder().exists()) {
@@ -35,5 +37,17 @@ public class ConfigManager {
         }
 
         playercfg = YamlConfiguration.loadConfiguration(playerdata);
+
+        langfile = new File(plugin.getDataFolder(), "lang.yml");
+
+        if (!langfile.exists()) {
+            try {
+                langfile.createNewFile();
+            } catch (IOException e) {
+                plugin.getLogger().warning(ChatColor.RED + "Could not create the lang file!");
+            }
+        }
+
+        langcfg = YamlConfiguration.loadConfiguration(langfile);
     }
 }
