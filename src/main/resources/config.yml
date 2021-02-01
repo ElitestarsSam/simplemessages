@@ -56,7 +56,7 @@ Messaging:
 # Format of the messages that are sent to players
   Messages:
     Incoming: "&f(&bYou &f> &b%receiver%&f)&8: &f%message%"
-    Outgoing: "&f(&%messager% &f> &bYou&f)&8: &f%message%"
+    Outgoing: "&f(&b%sender% &f> &bYou&f)&8: &f%message%"
 # Errors that are sent to players
   Errors:
     NoConversation: "&cNot currently in a conversation!"

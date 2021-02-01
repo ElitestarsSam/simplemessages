@@ -24,7 +24,7 @@ public class MsgCmd implements Listener, CommandExecutor {
                     args[0] = "";
                     String message = "";
                     for (int i = 0; i < args.length; i++) {
-                        message += "" + args[i];
+                        message += " " + args[i];
                     }
                     messager.sendMessage(plugin.msg(plugin.getConfig().getString("Messaging.Messages.Outgoing"))
                             .replaceAll("%sender%", messager.getName()).replaceAll("%receiver%", receiver.getName()).replaceAll("%message%", message));
